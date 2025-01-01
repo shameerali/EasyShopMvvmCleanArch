@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">EasyShopMvvmCleanArch</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="splash_txt">Experience Smart and Easy Shopping with Us!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
