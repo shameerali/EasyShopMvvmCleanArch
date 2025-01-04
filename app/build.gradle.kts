@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.kotlinAndroidKsp)
     alias(libs.plugins.kotlinKapt)
+    // Navigation Component
+    alias(libs.plugins.navigation.safe.args)
 }
 
 android {
@@ -63,4 +65,8 @@ dependencies {
     // SSP-SDP library
     implementation (libs.ssp.android)
     implementation (libs.sdp.android)
+
+    // Navigation Component
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }

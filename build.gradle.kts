@@ -6,4 +6,6 @@ plugins {
     alias(libs.plugins.hiltAndroid) apply false
     alias(libs.plugins.kotlinAndroidKsp) apply false
     alias(libs.plugins.kotlinKapt) apply false
+    // Navigation Component
+    alias(libs.plugins.navigation.safe.args) apply false
 }

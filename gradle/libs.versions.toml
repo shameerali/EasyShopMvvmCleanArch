@@ -22,6 +22,9 @@ navigationRuntimeKtx = "2.7.7"
 #// SSP-SDP library
 ssp_sdp = "1.1.0"
 
+#// Navigation Component
+nav_version_ktx = "2.6.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -43,6 +46,11 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 ssp-android = { group = "com.intuit.ssp", name = "ssp-android", version.ref = "ssp_sdp" }
 sdp-android = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "ssp_sdp" }
 
+#// Navigation Component
+androidx-navigation-fragment-ktx = {group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "nav_version_ktx" }
+androidx-navigation-ui-ktx = {group = "androidx.navigation", name = "navigation-ui-ktx" , version.ref = "nav_version_ktx" }
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -51,3 +59,6 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
 kotlinAndroidKsp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+
+#// Navigation Component
+navigation-safe-args = {id = "androidx.navigation.safeargs.kotlin" , version.ref = "nav_version_ktx" }
