@@ -20,4 +20,6 @@
     <string name="already_have_account">Already have account?</string>
     <string name="log_in">Log in</string>
     <string name="please_not_blanks">Please not blanks!</string>
+    <string name="navbar_menu_cart">Cart\n</string>
+    <string name="title_shopping_cart">Cart</string>
 </resources>
