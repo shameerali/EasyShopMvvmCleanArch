@@ -25,6 +25,15 @@ ssp_sdp = "1.1.0"
 #// Navigation Component
 nav_version_ktx = "2.6.0"
 
+#retrofit
+retrofit = "2.9.0"
+
+#okhttp
+okhttp = "4.9.3"
+
+#moshi-kotlin
+moshiKotlin = "1.15.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -50,6 +59,18 @@ sdp-android = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "s
 androidx-navigation-fragment-ktx = {group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "nav_version_ktx" }
 androidx-navigation-ui-ktx = {group = "androidx.navigation", name = "navigation-ui-ktx" , version.ref = "nav_version_ktx" }
 
+
+# Retrofit
+com-squareup-retrofit = {group = "com.squareup.retrofit2", name ="retrofit" , version.ref ="retrofit"}
+
+# Retrofit with Moshi Converter
+com-squareup-converter-moshi = {group = "com.squareup.retrofit2", name ="converter-moshi" , version.ref ="retrofit"}
+
+# OkHttp
+com-squareup-okhttp = {group = "com.squareup.okhttp3", name ="okhttp" , version.ref ="okhttp"}
+
+# Moshi
+com-squareup-moshi = {group = "com.squareup.moshi", name ="moshi-kotlin" , version.ref ="moshiKotlin"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

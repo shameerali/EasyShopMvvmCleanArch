@@ -57,16 +57,28 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-//     Hilt
+    //  Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
 
     // SSP-SDP library
-    implementation (libs.ssp.android)
-    implementation (libs.sdp.android)
+    implementation(libs.ssp.android)
+    implementation(libs.sdp.android)
 
     // Navigation Component
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    // Retrofit
+    implementation(libs.com.squareup.retrofit)
+
+    // Retrofit with Moshi Converter
+    implementation(libs.com.squareup.converter.moshi)
+
+    // OkHttp
+    implementation(libs.com.squareup.okhttp)
+
+    // Moshi
+    implementation(libs.com.squareup.moshi)
 }
