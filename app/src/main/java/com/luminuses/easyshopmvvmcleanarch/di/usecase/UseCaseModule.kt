@@ -2,6 +2,8 @@ package com.luminuses.easyshopmvvmcleanarch.di.usecase
 
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCase
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCaseImpl
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCase
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,4 +19,11 @@ abstract class UseCaseModule {
     abstract fun bindGetAllCategoryUseCase(
         getAllCategoryUseCaseImpl: CategoryUseCaseImpl,
     ): CategoryUseCase
+
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindGetAllProductsUseCase(
+        getAllProductsUseCaseImpl: GetAllProductsUseCaseImpl
+    ): GetAllProductsUseCase
 }

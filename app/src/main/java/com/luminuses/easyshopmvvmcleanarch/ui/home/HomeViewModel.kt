@@ -1,5 +1,6 @@
 package com.luminuses.easyshopmvvmcleanarch.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.luminuses.easyshopmvvmcleanarch.common.NetworkResponseState
 import com.luminuses.easyshopmvvmcleanarch.common.ScreenState
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCase
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import javax.inject.Inject
@@ -15,6 +17,7 @@ import kotlinx.coroutines.flow.onEach
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val categoryUseCase: CategoryUseCase,
+    private val getAllProductsUseCase: GetAllProductsUseCase,
 ) : ViewModel() {
     private val _products = MutableLiveData<ScreenState<List<ProductUiData>>>()
     val products: LiveData<ScreenState<List<ProductUiData>>> get() = _products
@@ -41,6 +44,18 @@ class HomeViewModel @Inject constructor(
 
     private fun getAllProducts() {
 
+        getAllProductsUseCase().onEach {
+            when (it) {
+                is NetworkResponseState.Error ->  _products.postValue(ScreenState.Error(it.exception.message!!))
+
+                is NetworkResponseState.Loading ->  _products.postValue(ScreenState.Loading)
+
+                is NetworkResponseState.Success ->{
+                    Log.d("TAG", "getAllProducts: Successss "+it.result)
+                }
+//                    _products.postValue(ScreenState.Success(it.result))
+            }
+        }.launchIn(viewModelScope)
 
     }
 
