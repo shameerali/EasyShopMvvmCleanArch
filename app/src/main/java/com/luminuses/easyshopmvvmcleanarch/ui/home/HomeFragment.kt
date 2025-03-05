@@ -2,11 +2,14 @@ package com.luminuses.easyshopmvvmcleanarch.ui.home
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.luminuses.easyshopmvvmcleanarch.R
+import com.luminuses.easyshopmvvmcleanarch.common.ScreenState
 import com.luminuses.easyshopmvvmcleanarch.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -16,6 +19,8 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private val homeViewModel: HomeViewModel by viewModels()
 
 
     @Inject
@@ -41,6 +46,29 @@ class HomeFragment : Fragment() {
 
     private fun setObservers() {
 
+        homeViewModel.categories.observe(viewLifecycleOwner) { homepageState ->
+            when (homepageState) {
+                is ScreenState.Error -> {
+                    Log.d("TAG", "setObservers: Error")
+//                    binding.homeProgressBar.gone()
+//                    requireView().showToast(homepageState.message)
+                }
+
+                is ScreenState.Loading -> {
+                    Log.d("TAG", "setObservers: Loading")
+//                    binding.homeProgressBar.visible()
+                }
+
+                is ScreenState.Success -> {
+                    Log.d("TAG", "setObservers: Success "+homepageState.uiData)
+//                    binding.homeCategoryRv.adapter =
+//                        CategoryAdapter(homepageState.uiData) { categoryName ->
+//                            getProductsByCategoryName(categoryName)
+//                        }
+//                    binding.homeProgressBar.gone()
+                }
+            }
+        }
 
     }
 
