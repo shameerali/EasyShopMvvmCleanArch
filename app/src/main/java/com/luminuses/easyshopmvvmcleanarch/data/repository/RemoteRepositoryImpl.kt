@@ -1,8 +1,11 @@
 package com.luminuses.easyshopmvvmcleanarch.data.repository
 
 import com.luminuses.easyshopmvvmcleanarch.common.NetworkResponseState
+import com.luminuses.easyshopmvvmcleanarch.data.dto.Product
 import com.luminuses.easyshopmvvmcleanarch.data.source.remote.RemoteDataSource
 import com.luminuses.easyshopmvvmcleanarch.di.coroutine.IoDispatcher
+import com.luminuses.easyshopmvvmcleanarch.domain.entity.product.ProductEntity
+import com.luminuses.easyshopmvvmcleanarch.domain.mapper.ProductListMapper
 import com.luminuses.easyshopmvvmcleanarch.domain.repository.RemoteRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -14,6 +17,7 @@ import javax.inject.Inject
 class RemoteRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val allProductsMapper: ProductListMapper<Product, ProductEntity>
 ) : RemoteRepository {
     override fun getAllCategoriesListFromApi(): Flow<NetworkResponseState<List<String>>> {
        return remoteDataSource.getAllCategoriesListFromApi().map {
@@ -24,5 +28,16 @@ class RemoteRepositoryImpl @Inject constructor(
 
            }
        }.flowOn(ioDispatcher)
+    }
+
+    override fun getProductsListFromApi(): Flow<NetworkResponseState<List<ProductEntity>>> {
+         return remoteDataSource.getProductsListFromApi().map {
+             when(it){
+                 is NetworkResponseState.Loading -> NetworkResponseState.Loading
+                 is NetworkResponseState.Error -> NetworkResponseState.Error(it.exception)
+                 is NetworkResponseState.Success -> NetworkResponseState.Success(allProductsMapper.map(it.result.products))
+
+             }
+         }.flowOn(ioDispatcher)
     }
 }

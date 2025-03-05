@@ -7,4 +7,5 @@ data class ProductEntity(
     val price: String,
     val imageUrl: String,
     val rating: Double,
+//    val add
 )

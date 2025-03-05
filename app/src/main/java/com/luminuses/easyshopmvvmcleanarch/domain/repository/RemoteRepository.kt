@@ -9,4 +9,7 @@ interface RemoteRepository {
 //    fun getProductsListFromApi(): Flow<NetworkResponseState<List<ProductEntity>>>
 
     fun getAllCategoriesListFromApi() : Flow<NetworkResponseState<List<String>>>
+
+    fun getProductsListFromApi(): Flow<NetworkResponseState<List<ProductEntity>>>
+
 }
