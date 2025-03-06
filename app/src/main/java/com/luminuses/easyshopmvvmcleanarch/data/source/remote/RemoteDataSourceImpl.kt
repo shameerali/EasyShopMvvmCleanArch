@@ -28,7 +28,6 @@ class RemoteDataSourceImpl @Inject constructor(
              try {
                  val response = apiService.getProductsListFromApi()
                  emit(NetworkResponseState.Success(response))
-
              }catch (e: Exception){
                  emit(NetworkResponseState.Error(e))
              }
