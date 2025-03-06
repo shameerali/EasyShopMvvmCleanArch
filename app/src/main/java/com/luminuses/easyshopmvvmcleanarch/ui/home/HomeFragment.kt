@@ -21,6 +21,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var productAdapter: ProductAdapter
 
 
     @Inject
@@ -33,6 +34,8 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        productAdapter = ProductAdapter(::navigateToProductDetail)
+        binding.homeProductRv.adapter = productAdapter
 
         return binding.root
     }
@@ -70,6 +73,31 @@ class HomeFragment : Fragment() {
             }
         }
 
+
+        homeViewModel.products.observe(viewLifecycleOwner) {
+            when (it) {
+                is ScreenState.Error -> {
+//                    binding.homeProgressBar.gone()
+//                    requireView().showToast(it.message)
+                }
+
+                ScreenState.Loading -> {
+//                    binding.homeProgressBar.visible()
+                }
+
+                is ScreenState.Success -> {
+                    productAdapter.submitList(it.uiData)
+//                    binding.homeProgressBar.gone()
+                }
+            }
+        }
+
+    }
+
+
+    private fun navigateToProductDetail(productId: Int) {
+//        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(productId)
+//        findNavController().navigate(action)
     }
 
 
