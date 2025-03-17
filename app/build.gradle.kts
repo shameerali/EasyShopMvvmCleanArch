@@ -81,4 +81,8 @@ dependencies {
 
     // Moshi
     implementation(libs.com.squareup.moshi)
+
+    //glide
+    implementation(libs.glide)
+    ksp(libs.glide.compiler)
 }

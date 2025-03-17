@@ -34,6 +34,9 @@ okhttp = "4.9.3"
 #moshi-kotlin
 moshiKotlin = "1.15.0"
 
+#glide
+glide = "4.15.1"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -71,6 +74,12 @@ com-squareup-okhttp = {group = "com.squareup.okhttp3", name ="okhttp" , version.
 
 # Moshi
 com-squareup-moshi = {group = "com.squareup.moshi", name ="moshi-kotlin" , version.ref ="moshiKotlin"}
+
+#// Glide
+#implementation 'com.github.bumptech.glide:glide:4.15.1'
+#kapt 'com.github.bumptech.glide:compiler:4.15.1'
+glide = {group = "com.github.bumptech.glide", name ="glide" , version.ref ="glide"}
+glide-compiler = {group = "com.github.bumptech.glide", name ="compiler" , version.ref ="glide"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

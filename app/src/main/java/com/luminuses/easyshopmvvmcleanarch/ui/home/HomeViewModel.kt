@@ -39,7 +39,10 @@ class HomeViewModel @Inject constructor(
             when (it) {
                 is NetworkResponseState.Error -> _categories.postValue(ScreenState.Error(it.exception.message!!))
                 is NetworkResponseState.Loading -> _categories.postValue(ScreenState.Loading)
-                is NetworkResponseState.Success -> _categories.postValue(ScreenState.Success(it.result))
+                is NetworkResponseState.Success -> {
+                    Log.d("TAG", "getAllCategory: Success "+it.result)
+                    _categories.postValue(ScreenState.Success(it.result))
+                }
             }
         }.launchIn(viewModelScope)
 
@@ -57,6 +60,10 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun getProductsByCategory(categoryName: String) {
+        TODO("Not yet implemented")
     }
 
 }

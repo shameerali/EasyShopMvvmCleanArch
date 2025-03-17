@@ -2,6 +2,7 @@ package com.luminuses.easyshopmvvmcleanarch.data.repository
 
 import com.luminuses.easyshopmvvmcleanarch.common.NetworkResponseState
 import com.luminuses.easyshopmvvmcleanarch.data.dto.Product
+import com.luminuses.easyshopmvvmcleanarch.data.dto.categories.CategoriesItem
 import com.luminuses.easyshopmvvmcleanarch.data.source.remote.RemoteDataSource
 import com.luminuses.easyshopmvvmcleanarch.di.coroutine.IoDispatcher
 import com.luminuses.easyshopmvvmcleanarch.domain.entity.product.ProductEntity
@@ -17,18 +18,33 @@ import javax.inject.Inject
 class RemoteRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-    private val allProductsMapper: ProductListMapper<Product, ProductEntity>
+    private val allProductsMapper: ProductListMapper<Product, ProductEntity>,
+    private val allCategoriesMapper: ProductListMapper<CategoriesItem, String>
 ) : RemoteRepository {
     override fun getAllCategoriesListFromApi(): Flow<NetworkResponseState<List<String>>> {
-       return remoteDataSource.getAllCategoriesListFromApi().map {
-           when(it){
-               is NetworkResponseState.Loading -> NetworkResponseState.Loading
-               is NetworkResponseState.Error -> NetworkResponseState.Error(it.exception)
-               is NetworkResponseState.Success -> NetworkResponseState.Success(it.result)
-
-           }
-       }.flowOn(ioDispatcher)
+        return remoteDataSource.getAllCategoriesListFromApi().map {
+            when(it){
+                is NetworkResponseState.Loading -> NetworkResponseState.Loading
+                is NetworkResponseState.Error -> NetworkResponseState.Error(it.exception)
+                is NetworkResponseState.Success -> {
+                    NetworkResponseState.Success(allCategoriesMapper.map(it.result))
+                }
+            }
+        }.flowOn(ioDispatcher)
     }
+//    override fun getAllCategoriesListFromApi(): Flow<NetworkResponseState<List<CategoriesItem>>> {
+//       return remoteDataSource.getAllCategoriesListFromApi().map {
+//           when(it){
+//               is NetworkResponseState.Loading -> NetworkResponseState.Loading
+//               is NetworkResponseState.Error -> NetworkResponseState.Error(it.exception)
+//               is NetworkResponseState.Success -> {
+////                   NetworkResponseState.Success(it.result)
+//                   NetworkResponseState.Loading
+//               }
+//
+//           }
+//       }.flowOn(ioDispatcher)
+//    }
 
     override fun getProductsListFromApi(): Flow<NetworkResponseState<List<ProductEntity>>> {
          return remoteDataSource.getProductsListFromApi().map {

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.luminuses.easyshopmvvmcleanarch.databinding.ProductItemBinding
+import com.luminuses.easyshopmvvmcleanarch.utils.loadImage
 
 class ProductAdapter (
     private val onItemClicked: (Int) -> Unit,
@@ -32,7 +33,7 @@ class ProductAdapter (
                 homeProductTitle.text = product.title.capitalize()
                 homeProductPrice.text = "${product.price} TL"
                 homeProductDescription.text = product.description
-//                homeItemImg.loadImage(product.imageUrl)
+                homeItemImg.loadImage(product.imageUrl)
                 homeProductRating.rating = product.rating.toFloat()
             }
             binding.root.setOnClickListener {

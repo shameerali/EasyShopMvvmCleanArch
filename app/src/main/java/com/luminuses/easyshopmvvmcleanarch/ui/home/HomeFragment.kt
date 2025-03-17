@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.luminuses.easyshopmvvmcleanarch.R
 import com.luminuses.easyshopmvvmcleanarch.common.ScreenState
 import com.luminuses.easyshopmvvmcleanarch.databinding.FragmentHomeBinding
@@ -64,10 +65,10 @@ class HomeFragment : Fragment() {
 
                 is ScreenState.Success -> {
                     Log.d("TAG", "setObservers: Success "+homepageState.uiData)
-//                    binding.homeCategoryRv.adapter =
-//                        CategoryAdapter(homepageState.uiData) { categoryName ->
-//                            getProductsByCategoryName(categoryName)
-//                        }
+                    binding.homeCategoryRv.adapter =
+                        CategoryAdapter(homepageState.uiData) { categoryName ->
+                            getProductsByCategoryName(categoryName)
+                        }
 //                    binding.homeProgressBar.gone()
                 }
             }
@@ -96,8 +97,13 @@ class HomeFragment : Fragment() {
 
 
     private fun navigateToProductDetail(productId: Int) {
-//        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(productId)
-//        findNavController().navigate(action)
+
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(productId)
+        findNavController().navigate(action)
+    }
+
+    private fun getProductsByCategoryName(categoryName: String) {
+        homeViewModel.getProductsByCategory(categoryName)
     }
 
 

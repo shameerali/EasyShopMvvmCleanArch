@@ -1,6 +1,8 @@
 package com.luminuses.easyshopmvvmcleanarch.di.mappers
 
 import com.luminuses.easyshopmvvmcleanarch.data.dto.Product
+import com.luminuses.easyshopmvvmcleanarch.data.dto.categories.CategoriesItem
+import com.luminuses.easyshopmvvmcleanarch.data.mapper.CategoriesItemMapper
 import com.luminuses.easyshopmvvmcleanarch.data.mapper.ProductEntityMapper
 import com.luminuses.easyshopmvvmcleanarch.domain.entity.product.ProductEntity
 import com.luminuses.easyshopmvvmcleanarch.domain.mapper.ProductListMapper
@@ -14,6 +16,9 @@ import dagger.hilt.android.scopes.ViewModelScoped
 @InstallIn(ViewModelComponent::class)
 abstract class MapperModule {
 
+    @Binds
+    @ViewModelScoped
+    abstract fun bindAllCategoriesListMapper(categoriesItemMapper: CategoriesItemMapper) : ProductListMapper<CategoriesItem, String>
 
     @Binds
     @ViewModelScoped
