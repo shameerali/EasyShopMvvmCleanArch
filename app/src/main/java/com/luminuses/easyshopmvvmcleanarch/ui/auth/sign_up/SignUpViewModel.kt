@@ -8,6 +8,7 @@ import com.luminuses.easyshopmvvmcleanarch.common.ScreenState
 import com.luminuses.easyshopmvvmcleanarch.domain.entity.user.UserInformationEntity
 import com.luminuses.easyshopmvvmcleanarch.domain.mapper.ProductBaseMapper
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.sign_up.FirebaseUserSignUpUseCase
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.write_user.WriteFirebaseUserInfosUseCase
 import com.luminuses.easyshopmvvmcleanarch.ui.auth.UserInformationUiData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val signUpUseCase: FirebaseUserSignUpUseCase,
+    private val writeFirebaseUserInfosUseCase: WriteFirebaseUserInfosUseCase,
     private val userInfoToEntity: ProductBaseMapper<UserInformationUiData, UserInformationEntity>,
 ) : ViewModel() {
 
@@ -30,12 +32,23 @@ class SignUpViewModel @Inject constructor(
                 userInfoToEntity.map(user),
                 onSuccess = {
                     _signUp.value = ScreenState.Success(user)
-//                    writeUserToFirebaseDatabase(userInfoToEntity.map(user))
+                    writeUserToFirebaseDatabase(userInfoToEntity.map(user))
                 }
             ){
                 _signUp.value = ScreenState.Error(it)
             }
         }
 
+    }
+
+    private fun writeUserToFirebaseDatabase(user: UserInformationEntity) {
+        viewModelScope.launch {
+            writeFirebaseUserInfosUseCase.invoke(
+                user,
+                onSuccess = {}
+            ) {
+                _signUp.value = ScreenState.Error(it)
+            }
+        }
     }
 }

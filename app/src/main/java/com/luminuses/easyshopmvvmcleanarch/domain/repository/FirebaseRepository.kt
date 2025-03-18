@@ -8,4 +8,10 @@ interface FirebaseRepository {
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     )
+
+    fun writeNewUserToFirebaseDatabase(
+        user: UserInformationEntity,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    )
 }

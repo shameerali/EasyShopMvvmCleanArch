@@ -15,4 +15,12 @@ class FirebaseRepositoryImpl @Inject constructor(
     ) {
         firebaseDataSource.signUpWithFirebase(user, onSuccess, onFailure)
     }
+
+    override fun writeNewUserToFirebaseDatabase(
+        user: UserInformationEntity,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+         firebaseDataSource.writeUserDataToFirebase(user, onSuccess, onFailure)
+    }
 }

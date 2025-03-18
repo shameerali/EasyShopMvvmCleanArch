@@ -1,6 +1,7 @@
 package com.luminuses.easyshopmvvmcleanarch.di.firebase
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,4 +16,8 @@ object FirebaseModule {
     @Provides
     @Singleton
     fun provideFirebaseUser() = FirebaseAuth.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideFireStoreInstance() = FirebaseFirestore.getInstance()
 }

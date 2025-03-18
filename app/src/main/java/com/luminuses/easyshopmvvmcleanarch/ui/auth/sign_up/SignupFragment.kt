@@ -57,21 +57,21 @@ class SignupFragment : Fragment() {
             when (it) {
                 is ScreenState.Error -> {
                     Log.d("TAG", "observer: Error ")
-//                    binding.btnCreateAccount.isEnabled = false
+                    binding.btnCreateAccount.isEnabled = true
                     requireView().showToast(it.message)
                     checkInternetConnection()
                 }
                 is ScreenState.Loading -> {
                     Log.d("TAG", "observer: Loading ")
-//                    binding.btnCreateAccount.isEnabled = true
-//                    checkInternetConnection()
+                    binding.btnCreateAccount.isEnabled = false
+                    checkInternetConnection()
                 }
                 is ScreenState.Success -> {
                     Log.d("TAG", "observer: Success ")
-//                    binding.btnCreateAccount.isEnabled = true
+                    binding.btnCreateAccount.isEnabled = true
                     requireView().showToast(getString(R.string.sign_up_success))
-//                    val action = SignupFragmentDirections.actionSignupFragmentToLoginFragment()
-//                    findNavController().navigate(action)
+                    val action = SignupFragmentDirections.actionSignupFragmentToLoginFragment()
+                    findNavController().navigate(action)
                 }
             }
         }

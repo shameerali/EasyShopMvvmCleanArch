@@ -8,4 +8,10 @@ interface FirebaseDataSource {
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit,
     )
+
+    fun writeUserDataToFirebase(
+        user: UserInformationEntity,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit,
+    )
 }
