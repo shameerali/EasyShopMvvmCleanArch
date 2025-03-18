@@ -25,4 +25,6 @@
     <string name="search_hint">Search Product</string>
     <string name="product_image_content">Image</string>
     <string name="progress_bar">Progress Bar</string>
+    <string name="no_internet_connection_dialog">Internet connection is not available. Would you like to go to settings and enable it?</string>
+
 </resources>

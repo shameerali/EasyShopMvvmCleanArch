@@ -13,6 +13,7 @@ import com.luminuses.easyshopmvvmcleanarch.R
 import com.luminuses.easyshopmvvmcleanarch.common.ScreenState
 import com.luminuses.easyshopmvvmcleanarch.databinding.FragmentSignupBinding
 import com.luminuses.easyshopmvvmcleanarch.ui.auth.UserInformationUiData
+import com.luminuses.easyshopmvvmcleanarch.utils.checkInternetConnection
 import com.luminuses.easyshopmvvmcleanarch.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,7 +59,7 @@ class SignupFragment : Fragment() {
                     Log.d("TAG", "observer: Error ")
 //                    binding.btnCreateAccount.isEnabled = false
                     requireView().showToast(it.message)
-//                    checkInternetConnection()
+                    checkInternetConnection()
                 }
                 is ScreenState.Loading -> {
                     Log.d("TAG", "observer: Loading ")
