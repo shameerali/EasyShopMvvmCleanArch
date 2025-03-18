@@ -4,6 +4,8 @@ import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCa
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCase
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCaseImpl
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.sign_up.FirebaseUserSignUpUseCase
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.sign_up.FirebaseUserSignUpUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -26,4 +28,10 @@ abstract class UseCaseModule {
     abstract fun bindGetAllProductsUseCase(
         getAllProductsUseCaseImpl: GetAllProductsUseCaseImpl
     ): GetAllProductsUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindFirebaseSignUpUseCase(
+        firebaseSignUpUseCaseImpl: FirebaseUserSignUpUseCaseImpl,
+    ): FirebaseUserSignUpUseCase
 }

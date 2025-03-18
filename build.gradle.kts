@@ -8,4 +8,6 @@ plugins {
     alias(libs.plugins.kotlinKapt) apply false
     // Navigation Component
     alias(libs.plugins.navigation.safe.args) apply false
+    // firebase auth
+    alias(libs.plugins.google.gms.google.services) apply false
 }

@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.kotlinKapt)
     // Navigation Component
     alias(libs.plugins.navigation.safe.args)
+    // firebase auth
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -85,4 +87,10 @@ dependencies {
     //glide
     implementation(libs.glide)
     ksp(libs.glide.compiler)
+
+    // firebase auth
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
 }
