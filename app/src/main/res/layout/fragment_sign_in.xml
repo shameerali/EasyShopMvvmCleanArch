@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_email"
-            android:text="shameerali.in@gmail.com"
+            android:text="test@gmail.com"
             android:inputType="textEmailAddress"
             android:autofillHints="emailAddress"/>
 
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_password"
-            android:text="asd"
+            android:text="1234567"
             android:inputType="textPassword"
             android:autofillHints="password"/>
     </com.google.android.material.textfield.TextInputLayout>
