@@ -9,14 +9,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.luminuses.easyshopmvvmcleanarch.R
 import com.luminuses.easyshopmvvmcleanarch.common.Constants
 import com.luminuses.easyshopmvvmcleanarch.databinding.ActivitySplashBinding
+import com.luminuses.easyshopmvvmcleanarch.utils.NotificationWorker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @SuppressLint("CustomSplashScreen")
@@ -33,20 +37,13 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
-//        setContentView(R.layout.activity_splash)
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
 
         binding = ActivitySplashBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
         if (isAppFirstTimeOpen) {
-//            setupLocalNotification()
+            setupLocalNotification()
             sharedPref.edit().putBoolean(Constants.PREF_IS_APP_FIRST_OPEN, false).apply()
         }
 
@@ -63,6 +60,16 @@ class SplashActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun setupLocalNotification() {
+        val periodicWorkerRequest = PeriodicWorkRequest.Builder(
+            NotificationWorker::class.java,
+            15,
+            TimeUnit.MINUTES
+        ).build()
+
+        WorkManager.getInstance(this).enqueue(periodicWorkerRequest)
     }
 
     companion object {
