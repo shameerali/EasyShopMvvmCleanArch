@@ -9,4 +9,6 @@ data class UserInformationUiData(
     val image: String,
     val password: String,
     val token: String,
+
 )
+

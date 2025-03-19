@@ -20,3 +20,19 @@ class UserInfoUiDataToEntityMapper @Inject constructor() : ProductBaseMapper<Use
     }
 
 }
+
+class UserInfoEntityToUiDataMapper @Inject constructor() :
+    ProductBaseMapper<UserInformationEntity, UserInformationUiData> {
+    override fun map(input: UserInformationEntity): UserInformationUiData {
+        return UserInformationUiData(
+            id = input.id,
+            name = input.name,
+            surname = input.surname,
+            email = input.email,
+            phone = input.phone,
+            image = input.image,
+            password = input.password,
+            token = input.token,
+        )
+    }
+}

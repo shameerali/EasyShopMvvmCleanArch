@@ -7,6 +7,7 @@ import com.luminuses.easyshopmvvmcleanarch.domain.mapper.ProductListMapper
 import com.luminuses.easyshopmvvmcleanarch.ui.auth.UserInformationUiData
 import com.luminuses.easyshopmvvmcleanarch.ui.home.ProductUiData
 import com.luminuses.easyshopmvvmcleanarch.ui.mapper.ProductEntityToUiMapper
+import com.luminuses.easyshopmvvmcleanarch.ui.mapper.UserInfoEntityToUiDataMapper
 import com.luminuses.easyshopmvvmcleanarch.ui.mapper.UserInfoUiDataToEntityMapper
 import dagger.Binds
 import dagger.Module
@@ -26,4 +27,8 @@ abstract class UiMapperModule {
     @Binds
     @ViewModelScoped
     abstract fun bindUserInfoUiDataToEntityMapper(userInformationEntityMapperToUi: UserInfoUiDataToEntityMapper) : ProductBaseMapper<UserInformationUiData, UserInformationEntity>
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindUserInfoEntityToUiDataMapper(userInformationUiDataMapper: UserInfoEntityToUiDataMapper): ProductBaseMapper<UserInformationEntity, UserInformationUiData>
 }

@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId = "com.luminuses.easyshopmvvmcleanarch"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -94,4 +94,9 @@ dependencies {
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.firebase.firestore)
+
+    // JWT
+    implementation(libs.kjwt.core)
+    implementation(libs.kjwt.jwks)
+    implementation(libs.arrow.core)
 }

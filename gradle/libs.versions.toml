@@ -45,6 +45,10 @@ credentialsPlayServicesAuth = "1.3.0"
 googleid = "1.1.1"
 firebaseFirestore = "25.1.2"
 
+#JWT
+kjwt_core = "0.8.0"
+arrow_core = "1.0.1"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -95,6 +99,16 @@ androidx-credentials = { group = "androidx.credentials", name = "credentials", v
 androidx-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
 googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
+
+#// JWT
+#implementation "io.github.nefilim.kjwt:kjwt-core:0.8.0"
+#implementation "io.github.nefilim.kjwt:kjwt-jwks:0.8.0"
+#implementation "io.arrow-kt:arrow-core:1.0.1"
+kjwt-core = { group = "io.github.nefilim.kjwt", name = "kjwt-core", version.ref = "kjwt_core" }
+kjwt-jwks = { group = "io.github.nefilim.kjwt", name = "kjwt-jwks", version.ref = "kjwt_core" }
+arrow-core = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow_core" }
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

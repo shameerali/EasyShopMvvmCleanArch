@@ -4,6 +4,8 @@ import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCa
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCase
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCaseImpl
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.sign_in.FirebaseUserSingInUseCase
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.sign_in.FirebaseUserSingInUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.sign_up.FirebaseUserSignUpUseCase
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.sign_up.FirebaseUserSignUpUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.write_user.WriteFirebaseUserInfosUseCase
@@ -42,4 +44,10 @@ abstract class UseCaseModule {
     abstract fun bindFirebaseWriteUserUseCase(
         firebaseWriteUserUseCaseImpl: WriteFirebaseUserInfosUseCaseImpl,
     ): WriteFirebaseUserInfosUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindFirebaseSignInUseCase(
+        firebaseUserSingInUseCaseImpl: FirebaseUserSingInUseCaseImpl
+    ): FirebaseUserSingInUseCase
 }
