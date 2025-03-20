@@ -26,5 +26,8 @@
     <string name="product_image_content">Image</string>
     <string name="progress_bar">Progress Bar</string>
     <string name="no_internet_connection_dialog">Internet connection is not available. Would you like to go to settings and enable it?</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="add_to_favorite">Add to favorite</string>
+    <string name="product_image">Image</string>
 
 </resources>

@@ -1,60 +1,107 @@
 package com.luminuses.easyshopmvvmcleanarch.ui.detail
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import com.google.android.material.tabs.TabLayoutMediator
 import com.luminuses.easyshopmvvmcleanarch.R
+import com.luminuses.easyshopmvvmcleanarch.common.ScreenState
+import com.luminuses.easyshopmvvmcleanarch.databinding.FragmentDetailBinding
+import com.luminuses.easyshopmvvmcleanarch.utils.checkInternetConnection
+import com.luminuses.easyshopmvvmcleanarch.utils.showToast
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentDetailBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val detailViewModel: DetailViewModel by viewModels()
+    private val args: DetailFragmentArgs by navArgs()
+
+
+    @Inject
+    lateinit var sharedPref: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        detailViewModel.getProduct(args.productId)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        checkInternetConnection()
+        setupProductDetail()
+        setupAddToCartButton()
+
+        binding.btnAddToFav.setOnClickListener {
+            addToFavorite()
+        }
+    }
+
+
+
+    private fun setupProductDetail() {
+        detailViewModel.product.observe(viewLifecycleOwner) {productState ->
+            when (productState) {
+                is ScreenState.Error ->  {
+//                    binding.detailProgressBar.gone()
+                    requireView().showToast(productState.message)
+                }
+                is ScreenState.Loading -> {
+//                    binding.detailProgressBar.visible()
+                }
+                is ScreenState.Success -> {
+//                    binding.detailProgressBar.gone()
+                    val product = productState.uiData
+                    bindProductDetailToView(product)
+                    viewPagerSetup(product)
                 }
             }
+
+        }
+
     }
+
+    private fun viewPagerSetup(product: DetailProductUiData) {
+        binding.viewPager.adapter = DetailImageViewPagerAdapter(product.imageUrl)
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { _, _ -> }.attach()
+    }
+
+    private fun bindProductDetailToView(product: DetailProductUiData) {
+        binding.apply {
+            detailProductTitle.text = product.title.capitalize()
+            detailProductPrice.text = "${product.price} TL"
+            detailProductDescription.text = product.description
+            detailProductRatingTxt.text = product.rating
+            detailProductRating.rating = product.rating.toFloat()
+
+//            val userId = getUserIdFromSharedPref(sharedPref)
+        }
+    }
+
+    private fun setupAddToCartButton() {
+
+    }
+
+    private fun addToFavorite(){
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

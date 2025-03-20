@@ -3,6 +3,7 @@ package com.luminuses.easyshopmvvmcleanarch.data.source.remote
 import android.util.Log
 import com.luminuses.easyshopmvvmcleanarch.common.NetworkResponseState
 import com.luminuses.easyshopmvvmcleanarch.data.api.ApiService
+import com.luminuses.easyshopmvvmcleanarch.data.dto.Product
 import com.luminuses.easyshopmvvmcleanarch.data.dto.Products
 import com.luminuses.easyshopmvvmcleanarch.data.dto.categories.CategoriesItem
 import kotlinx.coroutines.flow.Flow
@@ -35,6 +36,19 @@ class RemoteDataSourceImpl @Inject constructor(
              }catch (e: Exception){
                  emit(NetworkResponseState.Error(e))
              }
+         }
+    }
+
+    override fun getSingleProductByIdFromApi(productId: Int): Flow<NetworkResponseState<Product>> {
+         return flow {
+             emit(NetworkResponseState.Loading)
+             try {
+                 val response = apiService.getSingleProductByIdFromApi(productId)
+                 emit(NetworkResponseState.Success(response))
+             }catch (e: Exception){
+                 emit(NetworkResponseState.Error(e))
+             }
+
          }
     }
 }

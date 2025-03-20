@@ -99,4 +99,14 @@ dependencies {
     implementation(libs.kjwt.core)
     implementation(libs.kjwt.jwks)
     implementation(libs.arrow.core)
+
+    // WorkManager
+    implementation(libs.work.runtime.ktx)
+    implementation(libs.work.gcm)
+
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
 }

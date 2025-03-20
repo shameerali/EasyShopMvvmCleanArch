@@ -4,6 +4,8 @@ import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCa
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCase
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCaseImpl
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetSingleProductUseCase
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetSingleProductUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.sign_in.FirebaseUserSingInUseCase
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.sign_in.FirebaseUserSingInUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.user.sign_up.FirebaseUserSignUpUseCase
@@ -50,4 +52,11 @@ abstract class UseCaseModule {
     abstract fun bindFirebaseSignInUseCase(
         firebaseUserSingInUseCaseImpl: FirebaseUserSingInUseCaseImpl
     ): FirebaseUserSingInUseCase
+
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindGetSingleProductUseCase(
+        getSingleProductUseCaseImpl: GetSingleProductUseCaseImpl
+    ):GetSingleProductUseCase
 }

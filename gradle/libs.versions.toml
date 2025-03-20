@@ -49,6 +49,13 @@ firebaseFirestore = "25.1.2"
 kjwt_core = "0.8.0"
 arrow_core = "1.0.1"
 
+# WorkManager
+workManager = "2.8.1"
+
+# Room
+room_version = "2.5.2"
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -101,14 +108,24 @@ googleid = { group = "com.google.android.libraries.identity.googleid", name = "g
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 
 #// JWT
-#implementation "io.github.nefilim.kjwt:kjwt-core:0.8.0"
-#implementation "io.github.nefilim.kjwt:kjwt-jwks:0.8.0"
-#implementation "io.arrow-kt:arrow-core:1.0.1"
 kjwt-core = { group = "io.github.nefilim.kjwt", name = "kjwt-core", version.ref = "kjwt_core" }
 kjwt-jwks = { group = "io.github.nefilim.kjwt", name = "kjwt-jwks", version.ref = "kjwt_core" }
 arrow-core = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow_core" }
 
+# WorkManager
+work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workManager" }
+work-gcm = { group = "androidx.work", name = "work-gcm", version.ref = "workManager" }
 
+# Room
+#def room_version = "2.5.2"
+
+#implementation "androidx.room:room-runtime:$room_version"
+#implementation "androidx.room:room-ktx:$room_version"
+#annotationProcessor "androidx.room:room-compiler:$room_version"
+#kapt "androidx.room:room-compiler:$room_version"
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room_version" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room_version" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room_version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
