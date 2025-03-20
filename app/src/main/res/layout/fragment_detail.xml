@@ -89,6 +89,14 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btn_add_to_fav"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:text="@string/add_to_favorite" />
+
+            <Button
                 android:id="@+id/btn_add_to_cart"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
@@ -96,13 +104,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:text="@string/add_to_cart" />
 
-            <Button
-                android:id="@+id/btn_add_to_fav"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
-                android:text="@string/add_to_favorite" />
+
 
         </LinearLayout>
     </LinearLayout>

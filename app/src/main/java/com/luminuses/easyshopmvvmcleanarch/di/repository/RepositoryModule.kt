@@ -1,8 +1,10 @@
 package com.luminuses.easyshopmvvmcleanarch.di.repository
 
 import com.luminuses.easyshopmvvmcleanarch.data.repository.FirebaseRepositoryImpl
+import com.luminuses.easyshopmvvmcleanarch.data.repository.LocalRepositoryImpl
 import com.luminuses.easyshopmvvmcleanarch.data.repository.RemoteRepositoryImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.repository.FirebaseRepository
+import com.luminuses.easyshopmvvmcleanarch.domain.repository.LocalRepository
 import com.luminuses.easyshopmvvmcleanarch.domain.repository.RemoteRepository
 import dagger.Binds
 import dagger.Module
@@ -27,4 +29,10 @@ abstract class RepositoryModule {
         repository: FirebaseRepositoryImpl,
     ): FirebaseRepository
 
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindLocalRepository(
+        localRepositoryImpl: LocalRepositoryImpl
+    ):LocalRepository
 }

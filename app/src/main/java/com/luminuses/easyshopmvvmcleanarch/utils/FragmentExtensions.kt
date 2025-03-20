@@ -1,11 +1,13 @@
 package com.luminuses.easyshopmvvmcleanarch.utils
 
 import android.app.AlertDialog
+import android.content.SharedPreferences
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import com.luminuses.easyshopmvvmcleanarch.R
+import com.luminuses.easyshopmvvmcleanarch.common.Constants
 import com.luminuses.easyshopmvvmcleanarch.common.InternetPermissionManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,4 +45,11 @@ fun Fragment.showConfirmationDialog(message: String, onConfirm: () -> Unit) {
         .setPositiveButton("Yes") { _, _ -> onConfirm.invoke() }
         .setNegativeButton("No", null)
         .show()
+}
+
+fun getUserIdFromSharedPref(sharedPrefs: SharedPreferences): String {
+    return sharedPrefs.getString(
+        Constants.PREF_FIREBASE_USERID_KEY,
+        Constants.PREF_DEF_STR,
+    ) ?: Constants.PREF_DEF_STR
 }

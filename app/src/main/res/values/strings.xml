@@ -29,5 +29,7 @@
     <string name="add_to_cart">Add to cart</string>
     <string name="add_to_favorite">Add to favorite</string>
     <string name="product_image">Image</string>
+    <string name="added_to_cart">Added to cart</string>
+    <string name="added_to_favorite">Added to favorite</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package com.luminuses.easyshopmvvmcleanarch.di.usecase
 
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.CartUseCase
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.CartUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCase
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCase
@@ -59,4 +61,10 @@ abstract class UseCaseModule {
     abstract fun bindGetSingleProductUseCase(
         getSingleProductUseCaseImpl: GetSingleProductUseCaseImpl
     ):GetSingleProductUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindCartUseCase(
+        cartUseCaseImpl: CartUseCaseImpl
+    ):CartUseCase
 }

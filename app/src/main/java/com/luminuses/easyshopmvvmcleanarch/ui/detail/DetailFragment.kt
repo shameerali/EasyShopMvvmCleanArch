@@ -12,7 +12,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.luminuses.easyshopmvvmcleanarch.R
 import com.luminuses.easyshopmvvmcleanarch.common.ScreenState
 import com.luminuses.easyshopmvvmcleanarch.databinding.FragmentDetailBinding
+import com.luminuses.easyshopmvvmcleanarch.domain.entity.cart.UserCartEntity
 import com.luminuses.easyshopmvvmcleanarch.utils.checkInternetConnection
+import com.luminuses.easyshopmvvmcleanarch.utils.getUserIdFromSharedPref
 import com.luminuses.easyshopmvvmcleanarch.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -24,6 +26,8 @@ class DetailFragment : Fragment() {
 
     private val detailViewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
+
+    private lateinit var userCart: UserCartEntity
 
 
     @Inject
@@ -87,16 +91,29 @@ class DetailFragment : Fragment() {
             detailProductRatingTxt.text = product.rating
             detailProductRating.rating = product.rating.toFloat()
 
-//            val userId = getUserIdFromSharedPref(sharedPref)
+            val userId = getUserIdFromSharedPref(sharedPref)
+
+            userCart = UserCartEntity(
+                userId = userId,
+                productId = product.id,
+                quantity = 1,
+                price = product.price.toDouble().toInt(),
+                title = product.title,
+                image = product.imageUrl[0],
+            )
         }
     }
 
     private fun setupAddToCartButton() {
-
+        binding.btnAddToCart.setOnClickListener {
+            detailViewModel.addToCart(userCart)
+            requireView().showToast(getString(R.string.added_to_cart))
+        }
     }
 
     private fun addToFavorite(){
-
+        detailViewModel.addToFavorite(userCart)
+        requireView().showToast(getString(R.string.added_to_favorite))
     }
 
     override fun onDestroyView() {
