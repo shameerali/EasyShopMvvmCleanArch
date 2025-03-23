@@ -1,6 +1,7 @@
 package com.luminuses.easyshopmvvmcleanarch.data.source.local
 
 import com.luminuses.easyshopmvvmcleanarch.data.database.AppDao
+import com.luminuses.easyshopmvvmcleanarch.domain.entity.cart.UserCartBadgeEntity
 import com.luminuses.easyshopmvvmcleanarch.domain.entity.cart.UserCartEntity
 import javax.inject.Inject
 
@@ -21,5 +22,13 @@ class LocalDataSourceImpl @Inject constructor(
 
     override suspend fun updateUserCartFromDb(userCartEntity: UserCartEntity) {
         appDao.updateUserCartItem(userCartEntity)
+    }
+
+    override suspend fun insertUserCartBadgeCountToDb(userBadge: UserCartBadgeEntity) {
+        appDao.insertUserBadge(userBadge)
+    }
+
+    override suspend fun getUserCartBadgeStateFromDb(userUniqueInfo: String): UserCartBadgeEntity {
+        return appDao.getUserBadge(userUniqueInfo)
     }
 }

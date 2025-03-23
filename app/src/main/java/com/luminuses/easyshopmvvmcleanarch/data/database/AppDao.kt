@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.luminuses.easyshopmvvmcleanarch.domain.entity.cart.UserCartBadgeEntity
 import com.luminuses.easyshopmvvmcleanarch.domain.entity.cart.UserCartEntity
 
 @Dao
@@ -22,5 +23,11 @@ interface AppDao {
 
     @Update
     suspend fun updateUserCartItem(userCartEntity: UserCartEntity)
+
+    @Insert(UserCartBadgeEntity::class, onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUserBadge(userBadge: UserCartBadgeEntity)
+
+    @Query("SELECT * FROM user_badges WHERE userUniqueInfo = :userUniqueInfo")
+    fun getUserBadge(userUniqueInfo: String): UserCartBadgeEntity
 
 }

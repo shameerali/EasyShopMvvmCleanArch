@@ -13,9 +13,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.luminuses.easyshopmvvmcleanarch.R
 import com.luminuses.easyshopmvvmcleanarch.common.ScreenState
 import com.luminuses.easyshopmvvmcleanarch.databinding.FragmentDetailBinding
+import com.luminuses.easyshopmvvmcleanarch.domain.entity.cart.UserCartBadgeEntity
 import com.luminuses.easyshopmvvmcleanarch.domain.entity.cart.UserCartEntity
 import com.luminuses.easyshopmvvmcleanarch.utils.checkInternetConnection
 import com.luminuses.easyshopmvvmcleanarch.utils.getUserIdFromSharedPref
+import com.luminuses.easyshopmvvmcleanarch.utils.showBadgeVisibility
 import com.luminuses.easyshopmvvmcleanarch.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -111,6 +113,12 @@ class DetailFragment : Fragment() {
             Log.d("TAG", "setupAddToCartButton: "+userCart)
             detailViewModel.addToCart(userCart)
             requireView().showToast(getString(R.string.added_to_cart))
+            val badgeEntity = UserCartBadgeEntity(
+                userUniqueInfo = userCart.userId,
+                hasBadge = true,
+            )
+            detailViewModel.insertBadgeStatusToDb(badgeEntity)
+            showBadgeVisibility(badgeEntity.hasBadge)
         }
     }
 

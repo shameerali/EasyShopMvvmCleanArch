@@ -1,5 +1,7 @@
 package com.luminuses.easyshopmvvmcleanarch.di.usecase
 
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.badge.UserCartBadgeUseCase
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.badge.UserCartBadgeUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.CartUseCase
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.CartUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.DeleteUserCartUseCase
@@ -83,4 +85,11 @@ abstract class UseCaseModule {
     abstract fun bindUpdateCartUseCase(
         updateCartUseCaseImpl: UpdateCartUseCaseImpl
     ):UpdateCartUseCase
+
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindUserCartBadgeUseCase(
+        userCartBadgeUseCaseImpl: UserCartBadgeUseCaseImpl
+    ): UserCartBadgeUseCase
 }

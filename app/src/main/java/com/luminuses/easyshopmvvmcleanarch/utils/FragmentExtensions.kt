@@ -2,10 +2,12 @@ package com.luminuses.easyshopmvvmcleanarch.utils
 
 import android.app.AlertDialog
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.luminuses.easyshopmvvmcleanarch.R
 import com.luminuses.easyshopmvvmcleanarch.common.Constants
 import com.luminuses.easyshopmvvmcleanarch.common.InternetPermissionManager
@@ -52,4 +54,10 @@ fun getUserIdFromSharedPref(sharedPrefs: SharedPreferences): String {
         Constants.PREF_FIREBASE_USERID_KEY,
         Constants.PREF_DEF_STR,
     ) ?: Constants.PREF_DEF_STR
+}
+
+fun Fragment.showBadgeVisibility(showBadge: Boolean) {
+    val navBottomView =
+        (activity as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bottom_navigation)
+    navBottomView.updateCartBadgeVisibility(showBadge)
 }
