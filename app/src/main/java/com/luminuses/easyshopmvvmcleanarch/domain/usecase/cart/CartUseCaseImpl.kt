@@ -14,6 +14,6 @@ class CartUseCaseImpl @Inject constructor(
     }
 
     override suspend fun invoke(userId: String): Flow<NetworkResponseState<List<UserCartEntity>>> {
-        TODO("Not yet implemented")
+         return  localRepository.getCartsByUserIdFromDb(userId)
     }
 }

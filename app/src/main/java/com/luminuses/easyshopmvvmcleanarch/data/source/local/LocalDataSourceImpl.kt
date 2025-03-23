@@ -10,4 +10,16 @@ class LocalDataSourceImpl @Inject constructor(
     override suspend fun insertUserCartToDb(userCartEntity: UserCartEntity) {
         appDao.insertUserCart(userCartEntity)
     }
+
+    override suspend fun getUserCartByUserIdFromDb(userId: String): List<UserCartEntity> {
+        return appDao.getCartByUserId(userId)
+    }
+
+    override suspend fun deleteUserCartFromDb(userCartEntity: UserCartEntity) {
+         appDao.deleteUserCartItem(userCartEntity)
+    }
+
+    override suspend fun updateUserCartFromDb(userCartEntity: UserCartEntity) {
+        appDao.updateUserCartItem(userCartEntity)
+    }
 }

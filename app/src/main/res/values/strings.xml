@@ -31,5 +31,12 @@
     <string name="product_image">Image</string>
     <string name="added_to_cart">Added to cart</string>
     <string name="added_to_favorite">Added to favorite</string>
+    <string name="total_amount">Total amount</string>
+    <string name="buy_now">Buy now</string>
+    <string name="decrement_button">decrement button</string>
+    <string name="increment_button">increment button</string>
+    <string name="shopping_list_item_deleted_txt">Product deleted from cart.</string>
+    <string name="shopping_list_delete_warn">Are you sure you want to delete this product from cart?</string>
+
 
 </resources>

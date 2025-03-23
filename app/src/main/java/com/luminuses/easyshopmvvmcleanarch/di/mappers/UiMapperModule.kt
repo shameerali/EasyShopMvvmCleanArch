@@ -1,13 +1,16 @@
 package com.luminuses.easyshopmvvmcleanarch.di.mappers
 
+import com.luminuses.easyshopmvvmcleanarch.domain.entity.cart.UserCartEntity
 import com.luminuses.easyshopmvvmcleanarch.domain.entity.product.DetailProductEntity
 import com.luminuses.easyshopmvvmcleanarch.domain.entity.product.ProductEntity
 import com.luminuses.easyshopmvvmcleanarch.domain.entity.user.UserInformationEntity
 import com.luminuses.easyshopmvvmcleanarch.domain.mapper.ProductBaseMapper
 import com.luminuses.easyshopmvvmcleanarch.domain.mapper.ProductListMapper
 import com.luminuses.easyshopmvvmcleanarch.ui.auth.UserInformationUiData
+import com.luminuses.easyshopmvvmcleanarch.ui.cart.UserCartUiData
 import com.luminuses.easyshopmvvmcleanarch.ui.detail.DetailProductUiData
 import com.luminuses.easyshopmvvmcleanarch.ui.home.ProductUiData
+import com.luminuses.easyshopmvvmcleanarch.ui.mapper.CartEntityToUiMapper
 import com.luminuses.easyshopmvvmcleanarch.ui.mapper.DetailProductEntityToUiMapper
 import com.luminuses.easyshopmvvmcleanarch.ui.mapper.ProductEntityToUiMapper
 import com.luminuses.easyshopmvvmcleanarch.ui.mapper.UserInfoEntityToUiDataMapper
@@ -38,4 +41,8 @@ abstract class UiMapperModule {
     @Binds
     @ViewModelScoped
     abstract fun bindDetailProductEntityToDetailProductUiData(detailProductEntityToUiMapper: DetailProductEntityToUiMapper): ProductBaseMapper<DetailProductEntity, DetailProductUiData>
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindUserCartEntityToUserCartUiData(cartEntityToUiMapper: CartEntityToUiMapper): ProductListMapper<UserCartEntity, UserCartUiData>
 }

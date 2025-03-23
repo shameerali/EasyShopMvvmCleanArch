@@ -5,5 +5,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="md_theme_light_primary">#006973</color>
+    <color name="md_theme_dark_secondary">#B1CBD0</color>
 
 </resources>

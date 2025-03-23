@@ -2,6 +2,7 @@ package com.luminuses.easyshopmvvmcleanarch.ui.detail
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -106,6 +107,8 @@ class DetailFragment : Fragment() {
 
     private fun setupAddToCartButton() {
         binding.btnAddToCart.setOnClickListener {
+            Log.d("TAG", "setupAddToCartButton: ")
+            Log.d("TAG", "setupAddToCartButton: "+userCart)
             detailViewModel.addToCart(userCart)
             requireView().showToast(getString(R.string.added_to_cart))
         }

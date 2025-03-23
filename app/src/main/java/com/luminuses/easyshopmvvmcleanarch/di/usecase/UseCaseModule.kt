@@ -2,6 +2,10 @@ package com.luminuses.easyshopmvvmcleanarch.di.usecase
 
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.CartUseCase
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.CartUseCaseImpl
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.DeleteUserCartUseCase
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.DeleteUserCartUseCaseImpl
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.UpdateCartUseCase
+import com.luminuses.easyshopmvvmcleanarch.domain.usecase.cart.UpdateCartUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCase
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.category.CategoryUseCaseImpl
 import com.luminuses.easyshopmvvmcleanarch.domain.usecase.product.GetAllProductsUseCase
@@ -67,4 +71,16 @@ abstract class UseCaseModule {
     abstract fun bindCartUseCase(
         cartUseCaseImpl: CartUseCaseImpl
     ):CartUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindDeleteUserCartUseCase(
+        deleteUserCartUseCaseImpl: DeleteUserCartUseCaseImpl
+    ):DeleteUserCartUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindUpdateCartUseCase(
+        updateCartUseCaseImpl: UpdateCartUseCaseImpl
+    ):UpdateCartUseCase
 }
